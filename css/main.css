@@ -1,181 +1,237 @@
 *,
 *::before,
-*::after{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-body{
-     background-image: var(--darkGradient);
-    background-size: cover;
-    min-height: 100vh;
-
+body {
+  background-image: var(--darkGradient);
+  background-size: cover;
+  min-height: 100vh;
 }
 
-.wrapper{
-    padding: 2rem 1rem;
-    
+.wrapper {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: auto;
 }
-
-main{
-    max-width: 1440px;
-    margin: auto;
-   
-}
-
-
-
-
 
 :root {
-    --darkBlue: hsl(227, 75%, 14%);
-    --blackBlue: hsl(226, 25%, 17%);
-    --lightBlackBlue: hsl(225, 23%, 24%);
-    --darkGray: hsl(226, 11%, 37%);
-    --white200: hsl(217, 61%, 90%);
-    --white100:hsl(0, 0%, 93%);
-    --white: hsl(200, 60%, 99%);
+  --darkBlue: hsl(227, 75%, 14%);
+  --blackBlue: hsl(226, 25%, 17%);
+  --lightBlackBlue: hsl(225, 23%, 24%);
+  --darkGray: hsl(226, 11%, 37%);
+  --white200: hsl(217, 61%, 90%);
+  --white100: hsl(0, 0%, 93%);
+  --white: hsl(200, 60%, 99%);
 
-    /* red */
-    --red400:hsl(3, 86%, 64%);
-    --red500: hsl(3, 71%, 56%);
-    --red700:hsl(3, 77%, 44%);
+  /* red */
+  --red400: hsl(3, 86%, 64%);
+  --red500: hsl(3, 71%, 56%);
+  --red700: hsl(3, 77%, 44%);
 
-    /* gradients */
+  /* gradients */
 
-    --lightGradient: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%);
-    --darkGradient: linear-gradient(180deg, #040918 0%, #091540 100%);
+  --lightGradient: linear-gradient(180deg, #ebf2fc 0%, #eef8f9 100%);
+  --darkGradient: linear-gradient(180deg, #040918 0%, #091540 100%);
+}
+
+.mainHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--blackBlue);
+  padding: 1rem 1rem;
+  border-radius: 10px;
+  margin: 0 auto 4rem;
+}
+
+.extensionsList__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.colorToggle {
+  border-radius: 5px;
+  border: none;
+  padding: 0.8rem;
+  background-color: var(--lightBlackBlue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+.buttonsContainer button {
+  border-radius: 15px;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  background-color: var(--blackBlue);
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(0.9);
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 10px;
+}
+
+#extensionsListsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-content: center;
+  padding-top: 2rem;
+  gap: 10px;
+}
+
+.listCards {
+  padding: 1rem;
+  color: white;
+  background-color: var(--blackBlue);
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.textAlign {
+  margin-left: 1rem;
+}
+
+.removeBtn {
+  text-transform: capitalize;
+  background-color: var(--blackBlue);
+  border-radius: 15px;
+  padding: 0.5rem 1.5rem;
+  border: 0.5px solid white;
+  color: var(--white);
+  cursor: pointer;
+}
+
+
+
+.toggleBtn {
+  position: relative;
+  height: 20px;
+  width: 40px;
 
 }
 
-.mainHeader{
+.slider {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 13px;
+
+  background-color: #555;
+  transition: 0.3s;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 17px;
+  height: 17px;
+   
+  border-radius: 50%;
+  background-color: white;
+  transition: 0.3s;
+}
+
+.toggleBtn input:checked + .slider {
+  background-color: var(--red500);
+  
+}
+
+.toggleBtn input:checked + .slider::before {
+  transform: translateX(24px);
+  border: 1px solid var(--red400);
+}
+
+.toggleBtn input:not(:checked) + .slider::before {
+    border:     1px solid var(--darkGray);
+}
+
+.toggleBtn input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+
+.upperContainer{
+    display: flex;
+}
+
+
+
+.h2p{
+   padding-left: 1rem;;
+}
+.divBottomContainer{
+    margin-top: 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--blackBlue);
-    padding: 1rem 1rem;
-    border-radius: 10px;
-    margin: 0 auto 4rem;
-    max-width: 1440px;
-    
+}
+
+p{
+    padding-top: .5rem;
 }
 
 
 
 
-.extensionsList__header{
+
+@media screen and (max-width: 375px) {
+  .extensionsList__header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    
-}
+    flex-direction: column;
+    padding-top: 1rem;
+  }
 
-.colorToggle{
-    border-radius: 5px;
-    border: none;
-    padding: .8rem;
-    background-color: var(--blackBlue);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-h1{
-    color: white;
-    text-align: center
-}
-
-button{
-    border-radius: 15px;
-    border: none;
-    padding: .5rem 1.5rem;
-    text-align: center;
-    background-color: var(--blackBlue);
-    color: white;
-}
-
-
-button:hover{
-    transform: scale(.9);
-}
-
-
-.buttonsContainer{
-    display: flex;
-    gap: 10px;
-
-}
-
-
-
-.listCards{
-    padding: 1rem;
-    color: white;
-    background-color: var(--blackBlue);
-   border-radius: 15px;
-    display: flex;
-}
-
-
-#extensionsListsGrid{
-    display: grid;
-    grid-template-columns:  repeat(auto-fit, minmax(400px, 1fr));
-    justify-content: center;
-   padding-top: 1rem;
-    gap: 10px;
-    
-}
-
-
-.textAlign{
-    margin-left: 1rem;
-    border: 1px solid red;
-}
-
-
-
-
-@media screen and (max-width: 375px){
-    .extensionsList__header{
-        display: flex;
-        flex-direction: column;
-
-    }
-
-    .wrapper{
+  .wrapper {
     padding: 1.5rem 1rem 0;
-}
+  }
 
-.mainHeader{
+  .mainHeader {
     margin-bottom: 0.7rem;
-}
+  }
 
-.buttonsContainer{
+  .buttonsContainer {
     padding-top: 0.7rem;
+  }
+
+  .divBottomContainer{
+    margin-top: 2rem;
 }
-
-
-
-
-}
-
-
-
-
-
-
-
-
-@media screen and (max-width: 500px){
-    .buttonsContainer{
-        margin: auto
-    }
-
-    h1{
-        margin: auto;
-    }
 
 }
 
+@media screen and (max-width: 500px) {
+  .buttonsContainer {
+    margin: auto;
+  }
+
+  h1 {
+    margin: auto;
+  }
+}
