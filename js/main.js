@@ -1,15 +1,19 @@
+const allBtn = document.getElementById("allBtn");
+const activeBtn = document.getElementById("activeBtn");
+const inactiveBtn = document.getElementById("inactiveBtn")
 
-const activeBtn = document.getElementById("activeBtn")
+
 
 const list = document.getElementById("extensionsListsGrid");
-const allBtn = document.getElementById("allBtn");
 
- let allCards = []
- let activeCards = []
-    let inactiveCards = []
 
-        console.log(allCards)
-        console.log(activeCards)
+let allCards = [];
+let activeCards = [];
+let inactiveCards = [];
+
+console.log(allCards);
+console.log([...activeCards])
+console.log(activeCards.length)
 
 async function loadData() {
   try {
@@ -18,11 +22,6 @@ async function loadData() {
     const data = await response.json();
 
     data.forEach((item) => {
-
-       
-        
-
-
       const card = document.createElement("div");
 
       card.classList.add("listCards");
@@ -41,24 +40,67 @@ async function loadData() {
 
       divBottomContainer.classList.add("divBottomContainer");
 
-      
-
       divBottomContainer.append(removeBtn, labelForToggleBtn);
       card.append(divBottomContainer);
 
-
-       allCards.push(card)
-       list.append(card)
-
-       
-      
-
-
+      allCards.push(card);
+      list.append(card);
     });
+
+    const allToggleBtns = document.querySelectorAll('input')
+    
+
+    allToggleBtns.forEach((btn) => {
+        const btnIndex = [...allToggleBtns].indexOf(btn)
+        console.log(btnIndex)
+        btn.addEventListener('change', () => {
+            console.log('clicked')
+            if(btn.checked){
+                const copied = allCards.slice(btnIndex, btnIndex + 1)
+                activeCards.push(copied[0])
+                console.log(activeCards.push(copied[0]))
+                  
+            }
+
+        })
+    })
+        
+
+    
+    
+
   } catch (err) {
     console.error("Something went wrong", err);
   }
+
+  
 }
+
+
+
+
+allBtn.addEventListener('click', function() {
+    allBtn.classList.add('active')
+    activeBtn.classList.remove('active')
+    inactiveBtn.classList.remove('active')
+})
+
+activeBtn.addEventListener('click', function(){
+    allBtn.classList.remove('active')
+    inactiveBtn.classList.remove('active')
+    activeBtn.classList.add('active')
+    allBtn.classList.remove('allBtn')
+})
+
+inactiveBtn.addEventListener('click', function(){
+    allBtn.classList.remove('active')
+    activeBtn.classList.remove('active')
+    inactiveBtn.classList.add('active')
+})
+
+
+
+
 
 
 

@@ -76,10 +76,13 @@ h1 {
   border: none;
   padding: 0.5rem 1.5rem;
   text-align: center;
-  background-color: var(--blackBlue);
   color: white;
   cursor: pointer;
+  background-color: var(--lightBlackBlue);
 }
+
+
+
 
 button:hover {
   transform: scale(0.9);
@@ -167,7 +170,7 @@ button:hover {
 }
 
 .toggleBtn input:not(:checked) + .slider::before {
-    border:     1px solid var(--darkGray);
+    border:1px solid var(--darkGray);
 }
 
 .toggleBtn input {
@@ -197,6 +200,10 @@ p{
     padding-top: .5rem;
 }
 
+button.active {
+    background-color: var(--red500);
+    
+}
 
 
 
