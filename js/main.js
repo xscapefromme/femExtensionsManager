@@ -7,15 +7,12 @@ const inactiveBtn = document.getElementById("inactiveBtn")
 
 const list = document.getElementById("extensionsListsGrid");
 
-
-let allCards = [];
-let activeCards = [];
-let inactiveCards = [];
+let allCards = []
 
 console.log(allCards);
-console.log([...activeCards])
-console.log(activeCards.length)
-console.log([...inactiveCards])
+
+
+
 async function loadData() {
   try {
     const response = await fetch("data.json");
@@ -50,40 +47,45 @@ async function loadData() {
     });
 
 
-        const allToggleBtns = document.querySelectorAll('input')
+    
+    
+
+function filteringCards() {
+    
+    activeBtn.addEventListener('click', () => {
+    activeBtn.classList.add('active')
+    allBtn.classList.remove('active')
+    inactiveBtn.classList.remove('active')
+    const localStorageChecked = localStorage.setItem('checked', )
+        const activeCards = allCards.filter(card => card.querySelector('input').checked)
+        
+    list.innerHTML = ''
+    list.append(...activeCards)
+    console.log('click')
+   
+})
+
+inactiveBtn.addEventListener('click', () => {
+    allBtn.classList.remove('active')
+    activeBtn.classList.remove('active')
+    inactiveBtn.classList.add('active')
+
+    const inactiveCards = allCards.filter(card => !card.querySelector('input').checked)
+    list.innerHTML = ''
+    list.append(...inactiveCards)
+    console.log('clicked!')
+
+})
+
+
+    
+   
+}
        
-
-    
-
-    
-
-    const allCheckedToggle = document.querySelectorAll(
-    '.toggleBtn input:checked')
-
-    console.log(allCheckedToggle)
-
-    allToggleBtns.forEach((btn) => {
-        const btnIndex = [...allToggleBtns].indexOf(btn)
-        console.log(btnIndex)
-        btn.addEventListener('change', () => {  
-            console.log('clicked')
-            if(btn.checked){
-                const copied = allCards.slice(btnIndex, btnIndex + 1)
-                activeCards.push(copied[0])
-
-                console.log([...activeCards])
-            }else {
-            
-             inactiveCards.push(inactiveCopied)
-
-            }
-
-        })
-    })
+filteringCards()
 
   
-    
-    
+
 
   } catch (err) {
     console.error("Something went wrong", err);
@@ -106,29 +108,15 @@ allBtn.addEventListener('click', () => {
 })
 
  
-activeBtn.addEventListener('click', () => {
-    activeBtn.classList.add('active')
-    allBtn.classList.remove('active')
-    inactiveBtn.classList.remove('active')
 
-    list.innerHTML = ''
-    list.append(...activeCards)
-
-})
 
  
+ 
+    
+    
 
 
 
-inactiveBtn.addEventListener('click', () => {
-    allBtn.classList.remove('active')
-    activeBtn.classList.remove('active')
-    inactiveBtn.classList.add('active')
-
-    list.innerHTML = ''
-    list.append(...inactiveCards)
-
-})
 
 
 
