@@ -1,17 +1,27 @@
-
 const allBtn = document.getElementById("allBtn");
 const activeBtn = document.getElementById("activeBtn");
-const inactiveBtn = document.getElementById("inactiveBtn")
-
-
+const inactiveBtn = document.getElementById("inactiveBtn");
 
 const list = document.getElementById("extensionsListsGrid");
 
-let allCards = []
+let allCards = [];
 
 console.log(allCards);
 
-
+let checkedStatus = [
+  { id: 0, checked: false },
+  { id: 1, checked: false },
+  { id: 2, checked: false },
+  { id: 3, checked: false },
+  { id: 4, checked: false },
+  { id: 5, checked: false },
+  { id: 6, checked: false },
+  { id: 7, checked: false },
+  { id: 8, checked: false },
+  { id: 9, checked: false },
+  { id: 10, checked: false },
+  { id: 11, checked: false },
+];
 
 async function loadData() {
   try {
@@ -37,7 +47,6 @@ async function loadData() {
       const divBottomContainer = document.createElement("div");
 
       divBottomContainer.classList.add("divBottomContainer");
-      
 
       divBottomContainer.append(removeBtn, labelForToggleBtn);
       card.append(divBottomContainer);
@@ -46,83 +55,81 @@ async function loadData() {
       list.append(card);
     });
 
+    function filteringCards() {
+      activeBtn.addEventListener("click", () => {
+        activeBtn.classList.add("active");
+        allBtn.classList.remove("active");
+        inactiveBtn.classList.remove("active");
+        const activeCards = allCards.filter(
+          (card) => card.querySelector("input").checked
+        );
 
-    
-    
+        list.innerHTML = "";
+        list.append(...activeCards);
+        console.log("click");
+      });
 
-function filteringCards() {
-    
-    activeBtn.addEventListener('click', () => {
-    activeBtn.classList.add('active')
-    allBtn.classList.remove('active')
-    inactiveBtn.classList.remove('active')
-    const localStorageChecked = localStorage.setItem('checked', JSON.stringify( ))
-        const activeCards = allCards.filter(card => card.querySelector('input').checked)
+      inactiveBtn.addEventListener("click", () => {
+        allBtn.classList.remove("active");
+        activeBtn.classList.remove("active");
+        inactiveBtn.classList.add("active");
+
+        const inactiveCards = allCards.filter(
+          (card) => !card.querySelector("input").checked
+        );
+        list.innerHTML = "";
+        list.append(...inactiveCards);
+        console.log("clicked!");
+      });
+    }
+
+    filteringCards();
+
+    function setCheckedStatus() {
+      let toggleBtns = document.querySelectorAll("input");
+      
+      
+
+      toggleBtns.forEach((toggleBtn, index) => {
         
-    list.innerHTML = ''
-    list.append(...activeCards)
-    console.log('click')
+        toggleBtn.addEventListener("change", () => {
+
+          
+
+           checkedStatus[index].checked = toggleBtn.checked
+          localStorage.setItem(
+                    "logCheckedStatus",
+            JSON.stringify(checkedStatus)
+          );
+          
+          console.log("clicked!!!", index);
+          console.log("checked value:", toggleBtn.checked);
+          
+          
+         const savedStatus = JSON.parse(localStorage.getItem("logCheckedStatus")) || checkedStatus;
+          
+        });
+      });
+
+    }
+
+    setCheckedStatus();
+
    
-})
-
-inactiveBtn.addEventListener('click', () => {
-    allBtn.classList.remove('active')
-    activeBtn.classList.remove('active')
-    inactiveBtn.classList.add('active')
-
-    const inactiveCards = allCards.filter(card => !card.querySelector('input').checked)
-    list.innerHTML = ''
-    list.append(...inactiveCards)
-    console.log('clicked!')
-
-})
-
-
     
-   
-}
-       
-filteringCards()
-
-  
-
 
   } catch (err) {
     console.error("Something went wrong", err);
   }
-
-  
 }
 
+allBtn.addEventListener("click", () => {
+  allBtn.classList.add("active");
+  activeBtn.classList.remove("active");
+  inactiveBtn.classList.remove("active");
 
-
-
-allBtn.addEventListener('click', () => {
-    allBtn.classList.add('active')
-    activeBtn.classList.remove('active')
-    inactiveBtn.classList.remove('active')
-
-   
-    list.append(...allCards)
-
-})
-
- 
-
-
- 
- 
-    
-    
-
-
-
-
-
-
-
-
-
-
+  list.append(...allCards);
+});
 
 loadData();
+
