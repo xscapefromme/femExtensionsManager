@@ -56,7 +56,7 @@ function filteringCards() {
     activeBtn.classList.add('active')
     allBtn.classList.remove('active')
     inactiveBtn.classList.remove('active')
-    const localStorageChecked = localStorage.setItem('checked', )
+    const localStorageChecked = localStorage.setItem('checked', JSON.stringify( ))
         const activeCards = allCards.filter(card => card.querySelector('input').checked)
         
     list.innerHTML = ''
