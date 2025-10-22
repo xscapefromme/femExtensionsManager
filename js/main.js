@@ -1,3 +1,5 @@
+
+
 const allBtn = document.getElementById("allBtn");
 const activeBtn = document.getElementById("activeBtn");
 const inactiveBtn = document.getElementById("inactiveBtn");
@@ -5,8 +7,6 @@ const inactiveBtn = document.getElementById("inactiveBtn");
 const list = document.getElementById("extensionsListsGrid");
 
 let allCards = [];
-
-console.log(allCards);
 
 let checkedStatus = [
   { id: 0, checked: false },
@@ -30,6 +30,7 @@ async function loadData() {
     const data = await response.json();
 
     data.forEach((item) => {
+     
       const card = document.createElement("div");
 
       card.classList.add("listCards");
@@ -55,7 +56,48 @@ async function loadData() {
       list.append(card);
     });
 
-    function filteringCards() {
+
+    const toggleBtns = list.querySelectorAll('input.toggleBtn')
+    const toggleBtnsArr = [...toggleBtns]
+
+    console.log(toggleBtns)
+    console.log(toggleBtnsArr)
+
+    let saved = JSON.parse(localStorage.getItem('logCheckedStatus'))
+
+
+  
+
+    checkedStatus = saved;
+    console.log(checkedStatus)
+
+    toggleBtnsArr.forEach((toggleBtn, i) => {
+
+      toggleBtn.checked = checkedStatus[i]?.checked ?? false;
+
+      toggleBtn.addEventListener('change', () => {
+        
+
+        checkedStatus[i].checked = toggleBtn.checked
+      localStorage.setItem('logCheckedStatus', JSON.stringify(checkedStatus))
+
+      console.log("clicked!!!", i);
+          console.log("checked value:", toggleBtn.checked);
+    })
+        });
+
+
+      
+    
+
+
+  } catch (err) {
+    console.error("Something went wrong", err);
+  }
+}
+
+
+function filteringCards() {
       activeBtn.addEventListener("click", () => {
         activeBtn.classList.add("active");
         allBtn.classList.remove("active");
@@ -85,43 +127,16 @@ async function loadData() {
 
     filteringCards();
 
-    function setCheckedStatus() {
-      let toggleBtns = document.querySelectorAll("input");
+    
+     
       
       
-
-      toggleBtns.forEach((toggleBtn, index) => {
-        
-        toggleBtn.addEventListener("change", () => {
-
-          
-
-           checkedStatus[index].checked = toggleBtn.checked
-          localStorage.setItem(
-                    "logCheckedStatus",
-            JSON.stringify(checkedStatus)
-          );
-          
-          console.log("clicked!!!", index);
-          console.log("checked value:", toggleBtn.checked);
-          
-          
-         const savedStatus = JSON.parse(localStorage.getItem("logCheckedStatus")) || checkedStatus;
-          
-        });
-      });
-
-    }
-
-    setCheckedStatus();
-
-   
     
 
-  } catch (err) {
-    console.error("Something went wrong", err);
-  }
-}
+  
+    
+
+    
 
 allBtn.addEventListener("click", () => {
   allBtn.classList.add("active");
@@ -131,5 +146,6 @@ allBtn.addEventListener("click", () => {
   list.append(...allCards);
 });
 
-loadData();
 
+
+loadData();
