@@ -60,8 +60,7 @@ async function loadData() {
     const toggleBtns = list.querySelectorAll('input.toggleBtn')
     const toggleBtnsArr = [...toggleBtns]
 
-    console.log(toggleBtns)
-    console.log(toggleBtnsArr)
+
 
     let saved = JSON.parse(localStorage.getItem('logCheckedStatus'))
 
@@ -69,7 +68,7 @@ async function loadData() {
   
 
     checkedStatus = saved;
-    console.log(checkedStatus)
+    
 
     toggleBtnsArr.forEach((toggleBtn, i) => {
 
@@ -86,8 +85,33 @@ async function loadData() {
     })
         });
 
+const deleteBtns = list.querySelectorAll(".removeBtn")
+    
 
+
+    const deleteBtnsArr = [...deleteBtns]
+    
+    console.log(deleteBtnsArr)
+    
+
+    deleteBtnsArr.forEach((deleteBtn) => {
+
+      deleteBtn.addEventListener('click', () => {
+        const card = deleteBtn.closest('.listCards')
+        const index = allCards.indexOf(card)
+        if(index !== -1){
+          
+         allCards.splice(index, 1)
+        }
+        
+        console.log(allCards)
+        
+        card.remove()
+      })
       
+    })
+        
+    
     
 
 
@@ -129,14 +153,7 @@ function filteringCards() {
 
     
      
-      
-      
-    
 
-  
-    
-
-    
 
 allBtn.addEventListener("click", () => {
   allBtn.classList.add("active");
@@ -145,6 +162,10 @@ allBtn.addEventListener("click", () => {
 
   list.append(...allCards);
 });
+
+
+
+
 
 
 
