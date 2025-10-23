@@ -3,9 +3,8 @@
 const allBtn = document.getElementById("allBtn");
 const activeBtn = document.getElementById("activeBtn");
 const inactiveBtn = document.getElementById("inactiveBtn");
-
 const list = document.getElementById("extensionsListsGrid");
-
+const colorSwitchBtn = document.querySelector('.colorToggle')
 let allCards = [];
 
 let checkedStatus = [
@@ -86,8 +85,6 @@ async function loadData() {
     const deleteBtns = list.querySelectorAll(".removeBtn")
     const deleteBtnsArr = [...deleteBtns]
     
-    console.log(deleteBtnsArr)
-    
 
     deleteBtnsArr.forEach((deleteBtn) => {
 
@@ -114,6 +111,7 @@ async function loadData() {
     console.error("Something went wrong", err);
   }
 }
+
 
 
 function filteringCards() {
@@ -143,26 +141,89 @@ function filteringCards() {
         list.append(...inactiveCards);
         console.log("clicked!");
       });
-    }
 
-    filteringCards();
-
-    
-     
-
-
-allBtn.addEventListener("click", () => {
+      allBtn.addEventListener("click", () => {
   allBtn.classList.add("active");
   activeBtn.classList.remove("active");
   inactiveBtn.classList.remove("active");
 
   list.append(...allCards);
 });
+    }
+
+ filteringCards();
+   
+
+    
+     
 
 
 
 
 
 
+colorSwitchBtn.addEventListener('click', () => {
+  
+  const body = document.querySelector('body')
+  const listCards = document.querySelectorAll('.listCards')
+  const mainHeader = document.querySelector('.mainHeader')
+  const listH2s = document.querySelectorAll('h2')
+  const h1 = document.querySelector('h1')
+   const statusBtns = document.querySelectorAll('.buttonsContainer button')
+  const listContainerPs = document.querySelectorAll('.listCards p')
+  const listBtns = document.querySelectorAll('.listCards button')
+  
+
+
+  listH2s.forEach((listH2) => {
+    listH2.classList.toggle('h2White')
+  })
+  
+  listCards.forEach((card) => {
+    card.classList.toggle('listCardsWhite')
+  })
+
+
+  listContainerPs.forEach((listParagraph) => {
+    listParagraph.classList.toggle('listParagraphWhite')
+  })
+
+
+  listBtns.forEach((listBtn) => {
+    listBtn.classList.toggle('listBtnWhite')
+  })
+
+
+
+  mainHeader.classList.toggle('mainHeaderWhite')
+  h1.classList.toggle('h1White')
+  body.classList.toggle('bodyWhite')
+
+
+  
+ 
+ 
+    statusBtns.forEach((statusBtn) => {
+    
+      statusBtn.classList.toggle('statusButtonWhite')
+    
+  })
+
+ 
+   const isWhite =  colorSwitchBtn.classList.toggle('colorSwitchBtnWhite')
+
+    if(isWhite){
+      colorSwitchBtn.innerHTML = `<img class="imgCard" src="assets/images/icon-moon.svg">`
+    }else {
+      colorSwitchBtn.innerHTML = `<img class="imgCard" src="assets/images/icon-sun.svg">`
+    }
+      
+      
+    
+    
+  
+  
+
+})
 
 loadData();
