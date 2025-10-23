@@ -10,7 +10,7 @@ body {
   background-image: var(--darkGradient);
   background-size: cover;
   min-height: 100vh;
-  
+  background-color: black;
 }
 
 .wrapper {
@@ -107,7 +107,7 @@ button:hover {
   color: white;
   background-color: var(--blackBlue);
   border-radius: 15px;
-  transition: 0.3s;
+  transition: 0.7s;
 }
 
 .textAlign {

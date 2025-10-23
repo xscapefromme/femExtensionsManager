@@ -65,8 +65,6 @@ async function loadData() {
     let saved = JSON.parse(localStorage.getItem('logCheckedStatus'))
 
 
-  
-
     checkedStatus = saved;
     
 
@@ -85,10 +83,7 @@ async function loadData() {
     })
         });
 
-const deleteBtns = list.querySelectorAll(".removeBtn")
-    
-
-
+    const deleteBtns = list.querySelectorAll(".removeBtn")
     const deleteBtnsArr = [...deleteBtns]
     
     console.log(deleteBtnsArr)
@@ -126,9 +121,10 @@ function filteringCards() {
         activeBtn.classList.add("active");
         allBtn.classList.remove("active");
         inactiveBtn.classList.remove("active");
-        const activeCards = allCards.filter(
-          (card) => card.querySelector("input").checked
+        const activeCards = allCards.filter((card) => card.querySelector("input").checked
+         
         );
+        
 
         list.innerHTML = "";
         list.append(...activeCards);
