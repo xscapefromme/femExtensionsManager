@@ -65,6 +65,7 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: 0.4s;
 }
 
 h1 {
@@ -93,6 +94,8 @@ button:hover {
   display: flex;
   gap: 10px;
 }
+
+
 
 #extensionsListsGrid {
   display: grid;
@@ -166,7 +169,7 @@ button:hover {
 }
 
 .toggleBtn input:checked + .slider::before {
-  transform: translateX(24px);
+  transform: translateX(22px);
   border: 1px solid var(--red400);
 }
 
@@ -201,12 +204,59 @@ p{
     padding-top: .5rem;
 }
 
-button.active {
-    background-color: var(--red500);
-    
+
+
+
+
+.bodyWhite {
+  background-image: var(--lightGradient);
+  background-size: cover;
+  min-height: 100vh;
+  background-color: white; 
+  transition: 0.4s;
+}
+
+.mainHeaderWhite,
+.listCardsWhite {
+  background-color: var(--white);
+}
+
+.h1White,
+.h2White{
+  color: var(--blackBlue);
+}
+
+.buttonsContainer .statusButtonWhite {
+  background-color: var(--white);
+  color: var(--lightBlackBlue); 
+  border: 1px solid var(--darkGray);
+  box-shadow: 1px 1px 1px var(--darkGray);
+}
+
+.buttonsContainer .active {
+background-color: var(--red500)  ;
+  color: white  ;
+}
+
+.listParagraphWhite{
+  color: var(--blackBlue);
+}
+.listBtnWhite {
+  background-color: var(--white);
+  color: var(--blackBlue);
+  border: 1px solid var(--darkGray)
+}
+
+.listBtnWhite:hover {
+  background-color: var(--red400);
+  border: 1px solid var(--blackBlue)
 }
 
 
+ button.colorSwitchBtnWhite {
+  background-color: var(--white100);
+  
+}
 
 
 @media screen and (max-width: 375px) {
