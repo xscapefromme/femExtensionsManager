@@ -61,26 +61,28 @@ async function loadData() {
 
 
 
-    let saved = JSON.parse(localStorage.getItem('logCheckedStatus'))
+    let saved = JSON.parse(localStorage.getItem('logCheckedStatus')) ||[]
     
 
     if (saved){
       checkedStatus = saved
-    } else {
-      checkedStatus = []
-    }
+    } 
 
 
     toggleBtnsArr.forEach((toggleBtn, i) => {
-
-      toggleBtn.checked = checkedStatus[i]?.checked ?? false;
+      toggleBtn.checked = checkedStatus[i]?.checked ?? false
+      
       
       toggleBtn.addEventListener('change', () => {
-        
-        
+        if(!checkedStatus[i]) checkedStatus[i] = {checked:false}
         checkedStatus[i].checked = toggleBtn.checked
+        
       localStorage.setItem('logCheckedStatus', JSON.stringify(checkedStatus))
 
+      if(!checkedStatus[i]){
+        checkedStatus[i] = {}
+      }
+        
       console.log("clicked!!!", i);
           console.log("checked value:", toggleBtn.checked);
     })
