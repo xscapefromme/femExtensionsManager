@@ -123,6 +123,7 @@ function filteringCards() {
         activeBtn.classList.add("active");
         allBtn.classList.remove("active");
         inactiveBtn.classList.remove("active");
+        allBtn.classList.remove('allBtn')
         const activeCards = allCards.filter((card) => card.querySelector("input").checked
          
         );
@@ -137,7 +138,7 @@ function filteringCards() {
         allBtn.classList.remove("active");
         activeBtn.classList.remove("active");
         inactiveBtn.classList.add("active");
-
+        allBtn.classList.remove('allBtn')
         const inactiveCards = allCards.filter(
           (card) => !card.querySelector("input").checked
         );

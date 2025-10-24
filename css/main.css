@@ -274,6 +274,10 @@ button.colorSwitchBtnWhite:hover{
 }
 
 
+.buttonsContainer .allBtn{
+  background-color: var(--red400)
+}
+
 @media screen and (max-width: 375px) {
   .extensionsList__header {
     display: flex;
