@@ -32,8 +32,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/xscapefromme/femExtensionsManager.git)
-- Live Site URL: [Add live site URL here](https://femextensionsmanager.netlify.app/)
+- Solution URL: (https://github.com/xscapefromme/femExtensionsManager.git)
+- Live Site URL: (https://femextensionsmanager.netlify.app/)
 
 ## My process
 So how I started is obviously building foundation through HTML and style with CSS. Next was coding the interactivity which was the hard part such as building the toggle btns, fetching the data(first time doing so), trying to get the cards when active utilzing the filter method and place it in its own section[active or inactive]. Removing the card items with splice method while also giving user the option for their UI preference. Hardest part was the localStorage and still need to work and practice but understanding it better and better the more I utilize. 
