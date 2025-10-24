@@ -62,18 +62,22 @@ async function loadData() {
 
 
     let saved = JSON.parse(localStorage.getItem('logCheckedStatus'))
-
-
-    checkedStatus = saved;
     
+
+    if (saved){
+      checkedStatus = saved
+    } else {
+      checkedStatus = []
+    }
+
 
     toggleBtnsArr.forEach((toggleBtn, i) => {
 
       toggleBtn.checked = checkedStatus[i]?.checked ?? false;
-
+      
       toggleBtn.addEventListener('change', () => {
         
-
+        
         checkedStatus[i].checked = toggleBtn.checked
       localStorage.setItem('logCheckedStatus', JSON.stringify(checkedStatus))
 
@@ -105,7 +109,7 @@ async function loadData() {
         
     
     
-
+applyTheme(toggleStatus[0].toggled)
 
   } catch (err) {
     console.error("Something went wrong", err);
@@ -155,18 +159,37 @@ function filteringCards() {
    
 
     
+
+
+//starting point 
+let toggleStatus = [
+  { toggled: false}
+]
+
+
+ 
+let saveToggleStatus = JSON.parse(localStorage.getItem('logColorToggle'))
+
+if(saveToggleStatus){toggleStatus = saveToggleStatus}
      
-
-
-
+  
+    
 
 
 
 colorSwitchBtn.addEventListener('click', () => {
-  
+
+      toggleStatus[0].toggled = !toggleStatus[0].toggled
+    
+   localStorage.setItem('logColorToggle', JSON.stringify(toggleStatus))
+   applyTheme(toggleStatus[0].toggled)
+})
+
+
+function applyTheme(isLight){
   const body = document.querySelector('body')
   const listCards = document.querySelectorAll('.listCards')
-  const mainHeader = document.querySelector('.mainHeader')
+ const mainHeader = document.querySelector('.mainHeader')
   const listH2s = document.querySelectorAll('h2')
   const h1 = document.querySelector('h1')
    const statusBtns = document.querySelectorAll('.buttonsContainer button')
@@ -174,56 +197,49 @@ colorSwitchBtn.addEventListener('click', () => {
   const listBtns = document.querySelectorAll('.listCards button')
   
 
-
   listH2s.forEach((listH2) => {
-    listH2.classList.toggle('h2White')
+    listH2.classList.toggle('h2White', isLight)
   })
   
   listCards.forEach((card) => {
-    card.classList.toggle('listCardsWhite')
+    card.classList.toggle('listCardsWhite', isLight)
+    
   })
 
 
   listContainerPs.forEach((listParagraph) => {
-    listParagraph.classList.toggle('listParagraphWhite')
+    listParagraph.classList.toggle('listParagraphWhite', isLight)
   })
 
 
   listBtns.forEach((listBtn) => {
-    listBtn.classList.toggle('listBtnWhite')
+    listBtn.classList.toggle('listBtnWhite', isLight)
   })
 
 
 
-  mainHeader.classList.toggle('mainHeaderWhite')
-  h1.classList.toggle('h1White')
-  body.classList.toggle('bodyWhite')
+  mainHeader.classList.toggle('mainHeaderWhite', isLight)
+  h1.classList.toggle('h1White', isLight)
+  body.classList.toggle('bodyWhite', isLight)
 
 
   
  
  
     statusBtns.forEach((statusBtn) => {
-    
-      statusBtn.classList.toggle('statusButtonWhite')
-    
+      statusBtn.classList.toggle('statusButtonWhite', isLight)
   })
 
  
-   const isWhite =  colorSwitchBtn.classList.toggle('colorSwitchBtnWhite')
+   const isWhite =  colorSwitchBtn.classList.toggle('colorSwitchBtnWhite', isLight)
 
     if(isWhite){
       colorSwitchBtn.innerHTML = `<img class="imgCard" src="assets/images/icon-moon.svg">`
     }else {
       colorSwitchBtn.innerHTML = `<img class="imgCard" src="assets/images/icon-sun.svg">`
     }
-      
-      
-    
-    
-  
-  
+}
 
-})
+
 
 loadData();

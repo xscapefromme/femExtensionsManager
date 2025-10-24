@@ -11,6 +11,8 @@ body {
   background-size: cover;
   min-height: 100vh;
   background-color: black;
+  font-family: "Noto Sans", sans-serif;
+  transition: 1s;
 }
 
 .wrapper {
@@ -81,6 +83,8 @@ h1 {
   color: white;
   cursor: pointer;
   background-color: var(--lightBlackBlue);
+  box-shadow: 0 0 1px var(--white100);
+  
 }
 
 
@@ -88,11 +92,14 @@ h1 {
 
 button:hover {
   transform: scale(0.9);
+  background-color: var(--darkGray);
+  transition: 0.3s;
 }
 
 .buttonsContainer {
   display: flex;
   gap: 10px;
+  
 }
 
 
@@ -110,7 +117,9 @@ button:hover {
   color: white;
   background-color: var(--blackBlue);
   border-radius: 15px;
-  transition: 0.7s;
+  transition: 1s;
+  box-shadow: 0 0 1px var(--white100);
+  
 }
 
 .textAlign {
@@ -198,6 +207,7 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 p{
@@ -219,6 +229,7 @@ p{
 .mainHeaderWhite,
 .listCardsWhite {
   background-color: var(--white);
+  box-shadow: 0 0 1px var(--darkGray);
 }
 
 .h1White,
@@ -256,6 +267,10 @@ background-color: var(--red500)  ;
  button.colorSwitchBtnWhite {
   background-color: var(--white100);
   
+}
+
+button.colorSwitchBtnWhite:hover{
+  opacity: 80%;
 }
 
 
